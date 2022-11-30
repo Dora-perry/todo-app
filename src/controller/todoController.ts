@@ -29,18 +29,24 @@ export const editTodo = async (req: Request, res: Response) => {
     const todo = { description, done }
     Todo.findByIdAndUpdate(_id, todo, (err: any, data: any) => {
         if (err) {
-            return res.status(404).json({err})
+            return res.status(500).json({err})
         }
         return res.status(200).json({
-            message:'you have succesfully deleted one item'
+            message:'you have succesfully edited one item'
         })
     })
 
 
     
 }
-export const deleteTodo = async(req: Request, res: Response) => {
-    
+export const deleteTodo = async (req: Request, res: Response) => {
+    const { _id } = req.params;
+    Todo.findByIdAndRemove(_id, (err: any, data: any) => {
+        if (err) {
+            return res.status(500).json({ err })
+        }
+        return res.status(200).json({message: "you have successfully deleted one field"})
+    })
 }
 
 

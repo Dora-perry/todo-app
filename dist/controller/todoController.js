@@ -28,15 +28,22 @@ const editTodo = async (req, res) => {
     const todo = { description, done };
     todoModel_1.Todo.findByIdAndUpdate(_id, todo, (err, data) => {
         if (err) {
-            return res.status(404).json({ err });
+            return res.status(500).json({ err });
         }
         return res.status(200).json({
-            message: 'you have succesfully deleted one item'
+            message: 'you have succesfully edited one item'
         });
     });
 };
 exports.editTodo = editTodo;
 const deleteTodo = async (req, res) => {
+    const { _id } = req.params;
+    todoModel_1.Todo.findByIdAndRemove(_id, (err, data) => {
+        if (err) {
+            return res.status(500).json({ err });
+        }
+        return res.status(200).json({ message: "you have successfully deleted one field" });
+    });
 };
 exports.deleteTodo = deleteTodo;
 // addTodo
