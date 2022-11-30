@@ -5,8 +5,8 @@ const router = express.Router()
 
 router.post('/add-todo', addTodo)
 router.get('/get-all-todos', getTodo)
-router.put('/edit-todo', editTodo)
-router.delete('/delete-todo', deleteTodo)
+router.put('/edit-todo/:id', editTodo)
+router.delete('/delete-todo/:id', deleteTodo)
 
 
 

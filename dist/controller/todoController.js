@@ -14,9 +14,26 @@ const addTodo = async (req, res) => {
 };
 exports.addTodo = addTodo;
 const getTodo = async (req, res) => {
+    todoModel_1.Todo.find({}, (err, data) => {
+        if (err) {
+            return res.status(400).json({ err });
+        }
+        return res.status(200).json({ data });
+    });
 };
 exports.getTodo = getTodo;
 const editTodo = async (req, res) => {
+    const { description, done } = req.body;
+    const { _id } = req.params;
+    const todo = { description, done };
+    todoModel_1.Todo.findByIdAndUpdate(_id, todo, (err, data) => {
+        if (err) {
+            return res.status(404).json({ err });
+        }
+        return res.status(200).json({
+            message: 'you have succesfully deleted one item'
+        });
+    });
 };
 exports.editTodo = editTodo;
 const deleteTodo = async (req, res) => {
