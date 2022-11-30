@@ -10,7 +10,7 @@
     "morgan": "^1.10.0"
   },
   "scripts": {
-    "dev": "nodemon bin/app.js",
+    "dev": "nodemon dist/app.js",
     "watch": "tsc -w"
   },
   "devDependencies": {
